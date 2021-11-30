@@ -1,7 +1,7 @@
 # IDIS GDK Programming Guide
 
 ## 1. Introduction
-* What is G2Client GDK?
+**What is G2Client GDK?**
   Using IDIS G2Client GDK, you can download real-time or recorded images from remote devices linked via a network and control various settings of the remote devices associated with real-time monitoring.
 IDIS G2Client GDK does not include UI-related or drawing-related features. For this reason, an application program is required in order to print those images obtained from the G2Client GDK in a suitable format or to print OSD data.
 
