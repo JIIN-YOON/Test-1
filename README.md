@@ -1,6 +1,6 @@
 # IDIS GDK Programming Guide
 
-1. Introduction
+## 1. Introduction
 * What is G2Client GDK?
   Using IDIS G2Client GDK, you can download real-time or recorded images from remote devices linked via a network and control various settings of the remote devices associated with real-time monitoring.
 IDIS G2Client GDK does not include UI-related or drawing-related features. For this reason, an application program is required in order to print those images obtained from the G2Client GDK in a suitable format or to print OSD data.
@@ -20,7 +20,7 @@ IDIS G2Client GDK does not include UI-related or drawing-related features. For t
   When developing a program, please refer to the Tester Program distributed along with the G2Client GDK.
   
   
-2. Getting Started with the G2Client GDK
+## 2. Getting Started with the G2Client GDK
 
   **Requirements**
  
@@ -42,3 +42,34 @@ IDIS G2Client GDK does not include UI-related or drawing-related features. For t
     
     g2live _live;
   }
+```
+
+G2Sampler, which is a G2Client GDK's Wrapper class, registers DLL's callback functions automatically. Application program must be developed to perform appropriate actions, by registering listener from receiving g2live_listener class.  
+
+**Application Initialization**
+
+At the beginning of the application running with GDK, the initialization step should be needed for initializing GDK global variables.
+
+```java
+static void Main()
+{
+  g2main.app_initialize{G2LANGUAGE.ID.ENGLISH};
+  
+  // Application code
+  
+  g2main.app_finalize();
+}
+```
+
+
+## 3. g2admin
+
+**About g2admin**
+
+The g2admin accesses ISS(iNEX) Admin service and obtains information of the device registered to the service.
+Here, the obtained device information is used to access the remote device and to obtain its monitored or recorded images.
+
+**Obtaining Device Information from Admin Service Using g2admin**
+
+The following figure presents the general operation process of a program that implements the features such as Connection, Disconnection and obtaining device information.
+
