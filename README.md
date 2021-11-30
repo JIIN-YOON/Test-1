@@ -28,4 +28,17 @@ IDIS G2Client GDK does not include UI-related or drawing-related features. For t
  
   **Listener Functions**
   
-  There are two types of function provided by the G2Client GDK. 
+  There are two types of function provided by the G2Client GDK. One is with no response from the remote device and the other is with response from the remote device. When the function requesting the response from the remote device calls (e.g. request_ptz_menu), the function immediately returns whether or not the sending the request success. When the response arrives after the response has arrived from the remote device, G2Client GDK generates the callback. Even if the notification message or data from the remote device arrives, the callback occurs accordingly.
+  For example, when an image from a remote device arrives, the GDK generates the callback *on_g2live_receive_frame_data*, and when status information of a remote device arrives, it shall generate the callback *on_g2live_receive_camera_status*. For an application program to be able to receive such callbacks, it is required to set up a receiving class to g2live_listener.  
+  
+  ```java
+  class connective_live : g2live_listener
+  {
+    public connective_live()
+    {
+      _live = new g2live();
+      _live.set_listener(this);
+    }
+    
+    g2live _live;
+  }
