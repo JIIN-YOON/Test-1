@@ -72,4 +72,26 @@ Here, the obtained device information is used to access the remote device and to
 **Obtaining Device Information from Admin Service Using g2admin**
 
 The following figure presents the general operation process of a program that implements the features such as Connection, Disconnection and obtaining device information.
+![initialization](https://user-images.githubusercontent.com/95207482/144161171-25d5a633-f20c-461f-8782-459d289529f5.jpg)
 
+The following presents the comde implementing the figure shown above.
+
+First, in order to use the g2admin, declare a necessary variable. Declare a handle variable of G2HADMIN type which manages g2admin objects.
+
+```java
+class connective_admin : g2admin_listener
+{
+  g2admin _amin;
+  G2HADMIN _handle;
+}
+```
+Then in order to inialize g2admin, call g2admin singleton get and 2admin.set_listener functions. And then call g2admin.startup function.
+```java
+public connective_admin()
+{
+  _admin = new g2admin();
+  _admin.set_listener(this);
+  _admin.startup();
+{
+```
+Next, define the functions to be called when each callback arrives. Since this example will be implemented for performing minimum operations, only the callback functions with regards to the callbacks on_connected, on_disconnected and on_receive_device_list are defined. The following shows how to define callback functions each of which prints a short message upon the arrival of each callback, according to the function signature previously mentioned.
