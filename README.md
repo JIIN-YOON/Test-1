@@ -95,3 +95,24 @@ public connective_admin()
 {
 ```
 Next, define the functions to be called when each callback arrives. Since this example will be implemented for performing minimum operations, only the callback functions with regards to the callbacks on_connected, on_disconnected and on_receive_device_list are defined. The following shows how to define callback functions each of which prints a short message upon the arrival of each callback, according to the function signature previously mentioned.
+
+```java
+// Listener Functions /////////////
+public void
+on_g2admin_connected(G2HADMIN handle)
+{
+  print("on connected");
+}
+```
+
+Now, get ready to use the g2admin for an application. Then call g2admin.connect function after collecting information such as IP address,  user name and password of services that you want to connect. You can configure connection termination time using CONNECT_OPTIONS.
+This termination time is a time that takes to connect. It is not to terminate a session after the termination time. You can get more detailed information using G2CONNECT_RES.
+When the connection is made, on_g2admin_connected callback function will be called.
+
+```java
+G2NETWORK_INFO ni
+
+// Setting network information into a ni
+
+G2CONNECT-RES res;
+_admin.connect(ref ni,
