@@ -115,4 +115,5 @@ G2NETWORK_INFO ni
 // Setting network information into a ni
 
 G2CONNECT-RES res;
-_admin.connect(ref ni,
+_admin.connect(ref ni, out res);
+
