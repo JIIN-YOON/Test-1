@@ -117,3 +117,53 @@ G2NETWORK_INFO ni
 G2CONNECT-RES res;
 _admin.connect(ref ni, out res);
 
+
+// callback function
+public void
+on_g2admin_connected(int handle) {  }
+```
+
+And then the following call back functions will be called in a sequence.
+
+```java
+public void
+on_g2admin_notify_connectable_service
+(
+int handle,
+ref G2GUID service
+ref G2NETWORK_INFO ni
+)
+
+public void
+on_g2admin_receive_device_group_list
+(
+int handle,
+G2DEVICE_GROUP[] bunch
+)
+
+public void
+on_g2admin_receive_device_list
+(
+int handle,
+G2GUID[] bunch
+)
+
+public void
+on_g2admin_receive_device_to_group_map
+(
+int handle,
+G2GROUP_MEMBER[] bunch
+)
+
+public void
+on_g2admin_login_completed
+(
+int handle
+)
+```
+
+You can get G2GUID values of each registered service using g2admin.on_g2admin_notify_connectable_service callback function. You can verify service names using the G2GUID value and g2admin.get_service_info function. Refer to g2_define_admin.cs for details of G2SERVICE.
+
+You can check device group information registered on admin service using g2admin. on_g2admin_receive_device_group_list callback function. Refer to to g2_define_admin.cs for details of G2DEVICE_GROUP.
+
+You can check all devices' G2GUID value registered on admin service using g2admin.on_g2admin_receive_device_list callback function. If G2GUID.is_device_root value is true, you can get G2DEVICE_ROOT information using 
